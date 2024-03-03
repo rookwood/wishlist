@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Wishlist>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item>
  */
-class WishlistFactory extends Factory
+class ItemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,6 +18,8 @@ class WishlistFactory extends Factory
     {
         return [
             'name' => fake()->words(asText: true),
+            'url' => fake()->url,
+            'price' => fake()->numberBetween(100, 999999)
         ];
     }
 }

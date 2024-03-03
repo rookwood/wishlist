@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Wishlist\ShowWishListController;
 use App\Http\Controllers\Wishlist\WishlistIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', WishlistIndexController::class);
+Route::get('/', WishlistIndexController::class)->name('wishlist.index');
+Route::get('/wishlist/{wishlist}', ShowWishlistController::class)->name('wishlist.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

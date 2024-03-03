@@ -13,6 +13,7 @@ describe('view all wishlists', function () {
         $wishlists->each(function ($wishlist) use ($response) {
             expect($wishlist->name)->not->toBeEmpty();
             $response->assertSee($wishlist->name);
+            $response->assertSee(route('wishlist.show', $wishlist->id));
         });
     });
 });
