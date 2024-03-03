@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class Wishlist extends Model
 {
@@ -25,7 +24,7 @@ class Wishlist extends Model
     public function owners(): Attribute
     {
         return Attribute::make(
-           get: fn() => ($this->users->pluck('firstname')->join(', ', ' and '))
+            get: fn () => ($this->users->pluck('firstname')->join(', ', ' and '))
         );
     }
 }

@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Models\Wishlist;
 
 describe('Viewing an individual wishlist', function () {
-    test('Each list can have items', function() {
+    test('Each list can have items', function () {
         $wishlist = Wishlist::factory()
             ->has(Item::factory()->count(3))
             ->create();

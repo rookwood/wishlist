@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUlids;
+    use HasApiTokens, HasFactory, HasUlids, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +49,7 @@ class User extends Authenticatable
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn() => "{$this->firstname} {$this->lastname}"
+            get: fn () => "{$this->firstname} {$this->lastname}"
         );
     }
 }
