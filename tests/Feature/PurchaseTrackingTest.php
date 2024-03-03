@@ -3,7 +3,7 @@
 use App\Models\Item;
 use App\Models\User;
 
-describe('Purchase tracking for wishlist items', function() {
+describe('Purchase tracking for wishlist items', function () {
     test('items can have purchased status', function () {
         $user = User::factory()->create();
         $item = Item::factory()

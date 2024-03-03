@@ -23,7 +23,7 @@ class ItemFactory extends Factory
             'price' => fake()->numberBetween(100, 999999),
             'quantity' => fake()->numberBetween(1, 3),
             'notes' => fake()->sentence(),
-            'wishlist_id' => fn () => Wishlist::factory()
+            'wishlist_id' => fn () => Wishlist::factory(),
         ];
     }
 }

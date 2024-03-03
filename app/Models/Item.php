@@ -20,7 +20,7 @@ class Item extends Model
         Purchase::create([
             'item_id' => $this->id,
             'user_id' => $user->id,
-            'quantity' => $quantity
+            'quantity' => $quantity,
         ]);
     }
 
