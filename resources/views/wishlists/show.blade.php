@@ -16,10 +16,11 @@
                     <div>
                         <span class="text-gray-600">{{ $item->notes }}</span>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="w-16">Wants {{ $item->quantity }}</span>
-                        <span>Has ???</span>
-                    </div>
+                    @if($item->stillNeeds() > 1)
+                        <div>
+                            <span class="w-16">Wants {{ $item->stillNeeds() }}</span>
+                        </div>
+                        @endif
                 </div>
                 <div>
                     <span class="text-gray-400">Added on {{ $item->created_at->toFormattedDateString() }}</span>

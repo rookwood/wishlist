@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class ItemFactory extends Factory
             'price' => fake()->numberBetween(100, 999999),
             'quantity' => fake()->numberBetween(1, 3),
             'notes' => fake()->sentence(),
+            'wishlist_id' => fn () => Wishlist::factory()
         ];
     }
 }
