@@ -1,5 +1,8 @@
 <x-guest-layout>
-    <h1 class="text-xl mb-12">{{ $wishlist->name }}</h1>
+    <div class="flex justify-between">
+        <h1 class="text-xl mb-4">{{ $wishlist->name }}</h1>
+        <h3 class="text-md text-gray-500 mb-12">By {{ $wishlist->owners }}</h3>
+    </div>
     <ul>
         @foreach($wishlist->items as $item)
             <li class="mb-8">

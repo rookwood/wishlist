@@ -32,5 +32,6 @@ describe('Viewing an individual wishlist', function () {
             ->create();
 
         expect(count($wishlist->users))->toBe(2);
+        expect($wishlist->owners)->toContain(User::first()->firstname);
     });
 });
