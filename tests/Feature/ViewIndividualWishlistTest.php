@@ -21,6 +21,8 @@ describe('Viewing an individual wishlist', function () {
             $response->assertSee($item->name);
             $response->assertSee($item->url);
             $response->assertSee($item->price);
+            $response->assertSee($item->quantity);
+            $response->assertSee($item->notes);
         });
     });
 

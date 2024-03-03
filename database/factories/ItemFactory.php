@@ -19,7 +19,9 @@ class ItemFactory extends Factory
         return [
             'name' => fake()->words(asText: true),
             'url' => fake()->url,
-            'price' => fake()->numberBetween(100, 999999)
+            'price' => fake()->numberBetween(100, 999999),
+            'quantity' => fake()->numberBetween(1, 3),
+            'notes' => fake()->sentence(),
         ];
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('url');
             $table->integer('price');
+            $table->integer('quantity')->nullable();
+            $table->text('notes')->nullable();
             $table->foreignIdFor(Wishlist::class);
             $table->timestamps();
         });
