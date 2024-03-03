@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Item;
+use App\Models\User;
 use App\Models\Wishlist;
 
 describe('Viewing an individual wishlist', function () {
@@ -21,5 +22,13 @@ describe('Viewing an individual wishlist', function () {
             $response->assertSee($item->url);
             $response->assertSee($item->price);
         });
+    });
+
+    test('Each list can belong to multiple users', function () {
+        $wishlist = Wishlist::factory()
+            ->has(User::factory()->count(2))
+            ->create();
+
+        expect(count($wishlist->users))->toBe(2);
     });
 });
