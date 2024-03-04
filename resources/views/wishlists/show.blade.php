@@ -5,7 +5,9 @@
     </div>
     <ul class="divide-gray-300 divide-y">
         @foreach($wishlist->items as $item)
-            <x-wishlist-item :item="$item" key="{{ $item->id }}"/>
+            @if($item->stillNeeds() > 0)
+                <x-wishlist-item :item="$item" key="{{ $item->id }}"/>
+            @endif
         @endforeach
     </ul>
 </x-guest-layout>
