@@ -20,4 +20,13 @@ class WishlistFactory extends Factory
             'name' => fake()->words(asText: true),
         ];
     }
+
+    public function private(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'private' => true,
+            ];
+        });
+    }
 }

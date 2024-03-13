@@ -29,4 +29,17 @@ class Wishlist extends Model
             get: fn () => ($this->users->pluck('firstname')->join(', ', ' and '))
         );
     }
+
+    public function isPublic(): bool
+    {
+        return ! $this->private;
+    }
+
+    public function isVisibleTo(User $user): bool
+    {
+        if ($this->isPublic())
+            return true;
+
+        return $user->owns($this);
+    }
 }

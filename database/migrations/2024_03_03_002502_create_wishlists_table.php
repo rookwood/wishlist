@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('wishlists', function (Blueprint $table) {
             $table->ulid('id');
             $table->string('name');
+            $table->boolean('private')->default(false);
             $table->timestamps();
         });
     }
