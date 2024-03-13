@@ -15,7 +15,7 @@ class WishlistIndexController extends Controller
         $user = Auth::user() ?: new User;
         $listsGroupedByUsers = Wishlist::with(['items', 'users'])->get()->filter(function (Wishlist $list) use ($user) {
             return $list->isVisibleTo($user);
-        })->groupBy(function($list) {
+        })->groupBy(function ($list) {
             return $list->owners;
         });
 

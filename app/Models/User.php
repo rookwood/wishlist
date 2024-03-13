@@ -53,12 +53,10 @@ class User extends Authenticatable
      */
     public function owns(Model $object, $foreignKey = null): bool
     {
-        $foreignKey = $foreignKey ?: strtolower((new ReflectionClass($this))->getShortName()) . '_id';
+        $foreignKey = $foreignKey ?: strtolower((new ReflectionClass($this))->getShortName()).'_id';
 
-        if (isset($object->$foreignKey))
-        {
-            if ($object->$foreignKey == $this->id)
-            {
+        if (isset($object->$foreignKey)) {
+            if ($this->id == $object->$foreignKey) {
                 return true;
             }
         }

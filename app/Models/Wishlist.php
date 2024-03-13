@@ -44,8 +44,9 @@ class Wishlist extends Model
 
     public function isVisibleTo(User $user): bool
     {
-        if ($this->isPublic())
+        if ($this->isPublic()) {
             return true;
+        }
 
         return $user->owns($this);
     }

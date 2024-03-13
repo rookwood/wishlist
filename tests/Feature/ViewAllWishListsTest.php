@@ -30,7 +30,6 @@ describe('View all wishlists', function () {
             ->has(Item::factory())
             ->private()->create();
 
-
         $response = $this->actingAs(User::factory()->create())->get('/');
 
         $publicLists->each(function ($wishlist) use ($response) {
@@ -43,7 +42,7 @@ describe('View all wishlists', function () {
         $response->assertDontSee(route('wishlist.show', $privateList->id));
     });
 
-    test('Authentication is required to view lists', function() {
+    test('Authentication is required to view lists', function () {
         $response = $this->get('/');
         $response->assertRedirect(route('login'));
     });
