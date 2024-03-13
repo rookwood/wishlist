@@ -12,7 +12,8 @@ describe('Viewing an individual wishlist', function () {
 
         expect($wishlist->items)->not->toBeEmpty();
 
-        $response = $this->get(route('wishlist.show', $wishlist->id));
+        $response = $this->actingAs(User::factory()->create())
+            ->get(route('wishlist.show', $wishlist->id));
 
         $response->assertOk();
 

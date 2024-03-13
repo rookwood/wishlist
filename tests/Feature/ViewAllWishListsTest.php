@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Wishlist;
 
 describe('View all wishlists', function () {
@@ -7,7 +8,7 @@ describe('View all wishlists', function () {
 
         $wishlists = Wishlist::factory()->times(3)->create();
 
-        $response = $this->get('/');
+        $response = $this->actingAs(User::factory()->create())->get('/');
 
         $response->assertStatus(200);
         $wishlists->each(function ($wishlist) use ($response) {
@@ -22,7 +23,7 @@ describe('View all wishlists', function () {
         $privateList = Wishlist::factory()->private()->create();
 
 
-        $response = $this->get('/');
+        $response = $this->actingAs(User::factory()->create())->get('/');
 
         $publicLists->each(function ($wishlist) use ($response) {
             expect($wishlist->name)->not->toBeEmpty();
@@ -32,5 +33,10 @@ describe('View all wishlists', function () {
 
         $response->assertDontSee($privateList->name);
         $response->assertDontSee(route('wishlist.show', $privateList->id));
+    });
+
+    test('Authentication is required to view lists', function() {
+        $response = $this->get('/');
+        $response->assertRedirect(route('login'));
     });
 });

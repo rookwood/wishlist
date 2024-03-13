@@ -13,6 +13,11 @@ class Wishlist extends Model
 {
     use HasFactory, HasUlids;
 
+    public function lastUpdated()
+    {
+        return $this->items->max('created_at');
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);

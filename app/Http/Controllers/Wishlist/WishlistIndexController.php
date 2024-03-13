@@ -13,11 +13,13 @@ class WishlistIndexController extends Controller
     public function __invoke(): Response
     {
         $user = Auth::user() ?: new User;
-        $lists = Wishlist::all()->filter(function (Wishlist $list) use ($user) {
+        $listsGroupedByUsers = Wishlist::with(['items', 'users'])->get()->filter(function (Wishlist $list) use ($user) {
             return $list->isVisibleTo($user);
+        })->groupBy(function($list) {
+            return $list->owners;
         });
 
         return response()
-            ->view('wishlists.index', ['wishlists' => $lists]);
+            ->view('wishlists.index', ['listsGroupedByUsers' => $listsGroupedByUsers]);
     }
 }
