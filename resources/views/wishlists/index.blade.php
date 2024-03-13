@@ -13,7 +13,7 @@
                                 {{ $wishlist->name }}
                             </a>
                             <span class="text-gray-500">
-                                Updated {{ $wishlist->lastUpdated()->toFormattedDateString() }}
+                                Updated {{ $wishlist->lastUpdated() }}
                             </span>
                         </li>
                     @endforeach

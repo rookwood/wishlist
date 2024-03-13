@@ -15,7 +15,9 @@ class Wishlist extends Model
 
     public function lastUpdated()
     {
-        return $this->items->max('created_at');
+        return $this->items->max('created_at')
+            ? $this->items->max('created_at')->toFormattedDateString()
+            : $this->created_at->toFormattedDateString();
     }
 
     public function items(): HasMany
