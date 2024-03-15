@@ -8,12 +8,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Wishlist extends Model
 {
     use HasFactory, HasUlids;
 
-    public function lastUpdated()
+    protected $fillable = ['name'];
+
+    public static function createFromRequest($request): Wishlist
+    {
+        $wishlist = static::create([
+            'name' => $request->name
+        ]);
+
+        $wishlist->users()->attach(Auth::user());
+
+        return $wishlist;
+    }
+
+    public function lastUpdated(): string
     {
         return $this->items->max('created_at')
             ? $this->items->max('created_at')->toFormattedDateString()
