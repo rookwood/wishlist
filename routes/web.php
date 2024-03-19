@@ -33,7 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/wishlist/new', CreateNewWishlistController::class)->name('wishlist.create');
     Route::get('/wishlist/{wishlist}', ShowWishlistController::class)->name('wishlist.show');
 
-
     Route::post('/items/{item}/purchase', MarkItemPurchasedController::class)->name('purchases.create');
 });
 

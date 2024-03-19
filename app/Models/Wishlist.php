@@ -19,7 +19,7 @@ class Wishlist extends Model
     public static function createFromRequest($request): Wishlist
     {
         $wishlist = static::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
         $wishlist->users()->attach(Auth::user());
