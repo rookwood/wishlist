@@ -13,8 +13,9 @@ class Input extends Component
      */
     public function __construct(public string $field, public string $placeholder = '', public string $label = '', public string $value = '')
     {
-        if (empty($label))
+        if (empty($label)) {
             $this->label = ucfirst($field);
+        }
     }
 
     /**

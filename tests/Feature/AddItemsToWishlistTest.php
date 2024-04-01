@@ -14,7 +14,7 @@ describe('Wishlist item management', function () {
             'price' => '$49.99',
             'quantity' => 1,
             'notes' => 'XXL, pastel black',
-            'wishlist_id' => $wishlist->id
+            'wishlist_id' => $wishlist->id,
         ];
 
         $response = $this->actingAs(User::factory()->create())
@@ -23,7 +23,7 @@ describe('Wishlist item management', function () {
         $response->assertOk();
 
         $endingItemDetails = array_merge($startingItemDetails, [
-            'price' => 4999
+            'price' => 4999,
         ]);
 
         $this->assertDatabaseHas('items', $endingItemDetails);
