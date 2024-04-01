@@ -2,20 +2,19 @@
 
 namespace App\View\Components;
 
-use App\Models\Item;
-use App\Models\Wishlist;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class WishlistItem extends Component
+class Input extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public Item $item, public Wishlist $wishlist)
+    public function __construct(public string $field, public string $placeholder = '', public string $label = '', public string $value = '')
     {
-
+        if (empty($label))
+            $this->label = ucfirst($field);
     }
 
     /**
@@ -23,6 +22,6 @@ class WishlistItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.wishlist-item');
+        return view('components.input');
     }
 }

@@ -8,8 +8,8 @@
         </x-slot:header>
         <ul class="divide-gray-300 divide-y">
             @foreach($wishlist->items as $item)
-                @if($item->stillNeeds() > 0)
-                    <x-wishlist-item :item="$item" key="{{ $item->id }}"/>
+                @if($item->stillNeeds() > 0 || Auth::user()->wishlists->contains($wishlist))
+                    <x-wishlist-item :item="$item" :wishlist="$wishlist" key="{{ $item->id }}"/>
                 @endif
             @endforeach
         </ul>

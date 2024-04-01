@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Wishlist\ShowWishListController;
 use App\Http\Controllers\Wishlist\WishlistIndexController;
+use App\Http\Controllers\Wishlists\AddItemToWishlistController;
+use App\Http\Controllers\Wishlists\AddItemToWishlistFormController;
 use App\Http\Controllers\Wishlists\CreateNewWishlistController;
 use App\Http\Controllers\Wishlists\MarkItemPurchasedController;
 use App\Http\Controllers\Wishlists\NewWishlistFormController;
@@ -32,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/wishlist/new', NewWishlistFormController::class);
     Route::post('/wishlist/new', CreateNewWishlistController::class)->name('wishlist.create');
     Route::get('/wishlist/{wishlist}', ShowWishlistController::class)->name('wishlist.show');
+
+    Route::post('/wishlist/{wishlist}/item/new', AddItemToWishlistController::class)->name('items.create');
+    Route::get('/wishlist/{wishlist}/item/new', AddItemToWishlistFormController::class);
 
     Route::post('/items/{item}/purchase', MarkItemPurchasedController::class)->name('purchases.create');
 });

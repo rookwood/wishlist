@@ -12,18 +12,27 @@
                 <div>
                     <span class="text-gray-600 text-md">{{ $item->notes }}</span>
                 </div>
-                @if($item->stillNeeds() > 1)
+                @can('see_purchases_for', $wishlist)
+                    @if($item->stillNeeds() > 1)
+                        <div>
+                            <span class="w-16 text-gray-600"><span class="text-gray-500">Wants</span> {{ $item->stillNeeds() }}</span>
+                        </div>
+                    @endif
+                @else
                     <div>
-                        <span class="w-16 text-gray-600"><span class="text-gray-500">Wants</span> {{ $item->stillNeeds() }}</span>
+                        <span class="w-16 text-gray-600"><span class="text-gray-500">Requested</span> {{ $item->quantity }}</span>
                     </div>
-                @endif
+                @endcan
             </div>
             <div class="flex justify-between">
                 <span class="text-gray-400 text-sm pt-1">Added {{ $item->created_at->toFormattedDateString() }}</span>
-                <form action="{{ route('purchases.create', $item->id) }}" method="POST" >
-                    <div>@csrf</div>
-                    <input type="submit" value="Mark purchased" class="rounded bg-gray-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" />
-                </form>
+
+                @if(! Auth::user()->wishlists->contains($wishlist))
+                    <form action="{{ route('purchases.create', $item->id) }}" method="POST" >
+                        <div>@csrf</div>
+                        <input type="submit" value="Mark purchased" class="rounded bg-gray-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" />
+                    </form>
+                @endif
             </div>
         </div>
     </div>

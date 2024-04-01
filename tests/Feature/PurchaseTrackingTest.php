@@ -30,4 +30,18 @@ describe('Purchase tracking for wishlist items', function () {
 
         $this->assertDatabaseHas('purchases', ['user_id' => $user->id, 'item_id' => $item->id]);
     });
+
+    test('A user cannot see items that have been purchased from their own list', function() {
+        $user = User::factory()->create();
+        $wishlist = \App\Models\Wishlist::factory()->has(Item::factory()->state(['quantity' => 2]))->create();
+        $item = Item::first();
+
+        $item->markPurchased(User::factory()->create());
+
+        $response = $this->actingAs($user)
+            ->get(route('wishlist.show', $wishlist));
+
+        $response->assertOk();
+        $response->assertSee("Requested</span> 2</span>", false);
+    });
 });

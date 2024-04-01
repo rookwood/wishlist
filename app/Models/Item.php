@@ -15,6 +15,8 @@ class Item extends Model
 
     protected $with = ['purchases'];
 
+    protected $fillable = ['name', 'url', 'price', 'quantity', 'notes'];
+
     public function markPurchased(User $user, int $quantity = 1)
     {
         Purchase::create([
@@ -34,7 +36,7 @@ class Item extends Model
         return $this->hasMany(Purchase::class);
     }
 
-    public function stillneeds(): int
+    public function stillNeeds(): int
     {
         return $this->quantity - $this->quantityPurchased();
     }
@@ -47,7 +49,8 @@ class Item extends Model
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn (int $value) => sprintf('$%s', number_format($value / 100, 2))
+            get: fn (int $value) => sprintf('$%s', number_format($value / 100, 2)),
+            set: fn (string $value) => (int) preg_replace('/[^0-9]/', '', $value)
         );
     }
 }
