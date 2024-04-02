@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="mb-8 p-8">
+    <div class="mb-8">
         <div class="flex justify-between px-12 pt-4">
             <h1 class="text-2xl">Wishlists</h1>
             <a href="{{ route('wishlist.create') }}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Wishlist</a>

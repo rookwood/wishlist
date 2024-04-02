@@ -14,12 +14,14 @@ class Wishlist extends Model
 {
     use HasFactory, HasUlids;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'private'];
 
     public static function createFromRequest($request): Wishlist
     {
         $wishlist = static::create([
             'name' => $request->name,
+            'private' => $request->private,
+
         ]);
 
         $wishlist->users()->attach(Auth::user());
