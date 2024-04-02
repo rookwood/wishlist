@@ -8,6 +8,7 @@ use App\Http\Controllers\Wishlists\AddItemToWishlistFormController;
 use App\Http\Controllers\Wishlists\CreateNewWishlistController;
 use App\Http\Controllers\Wishlists\MarkItemPurchasedController;
 use App\Http\Controllers\Wishlists\NewWishlistFormController;
+use App\Http\Controllers\Wishlists\RemoveItemFromWishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +38,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/wishlist/{wishlist}/item/new', AddItemToWishlistController::class)->name('items.create');
     Route::get('/wishlist/{wishlist}/item/new', AddItemToWishlistFormController::class);
+    Route::post('items/{item}/delete', RemoveItemFromWishlistController::class)->name('items.delete');
 
     Route::post('/items/{item}/purchase', MarkItemPurchasedController::class)->name('purchases.create');
+
 });
 
 require __DIR__.'/auth.php';

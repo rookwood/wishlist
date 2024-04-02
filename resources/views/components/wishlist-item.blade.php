@@ -32,6 +32,11 @@
                         <div>@csrf</div>
                         <input type="submit" value="Mark purchased" class="rounded bg-gray-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" />
                     </form>
+                @else
+                    <form action="{{ route('items.delete', $item) }}" method="POST">
+                        <div>@csrf</div>
+                        <input type="submit" value="Delete" class="rounded bg-gray-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" />
+                    </form>
                 @endif
             </div>
         </div>

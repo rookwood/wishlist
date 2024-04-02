@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Item;
 use App\Models\User;
 use App\Models\Wishlist;
 
@@ -27,5 +28,18 @@ describe('Wishlist item management', function () {
         ]);
 
         $this->assertDatabaseHas('items', $endingItemDetails);
+    });
+
+    test('Items can be removed from a wishlist', function () {
+        $wishlist = Wishlist::factory()
+            ->has(Item::factory())
+            ->has(User::factory())
+            ->create();
+        $item = Item::first();
+
+        $response = $this->actingAs($wishlist->users->first())
+            ->post(route('items.delete', $item));
+
+        $this->assertEquals(0, $wishlist->fresh()->items->count());
     });
 });
